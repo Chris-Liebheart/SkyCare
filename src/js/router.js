@@ -1,42 +1,20 @@
+// Import all views
 import { showLanding } from '../views/landing.js';
 import { showLogin } from '../views/login.js';
 import { showRegister } from '../views/register.js';
-import { showDashboard } from '../views/dashboard.js';
-import { showNotFound} from '../views/404.js';
+import { showDashboard } from '../views/dashboard';
+import { showNotFound } from '../views/notFound.js';
 
-export function router () {
-    const router = {
-    '': showLanding,
-    '#/': showLanding,
-    '#/login': showLogin,
-    '#/register': showRegister,
-    '#/dashboard': showDashboard,
+// Define app routes and match them to view functions
+const routes = {
+  '': showLanding,
+  '/': showLanding,
+  '#/login': showLogin,
+  '#/register': showRegister,
+  '#/dashboard': showDashboard,
+  '#/not-found': showNotFound
 };
 
-const path = location.hash || '#/';
-  const currentUser = localStorage.getItem('currentUser');
-
-  // If user is logged in, redirect from landing to dashboard
-  if (currentUser && (path === '#/' || path === '')) {
-    location.hash = '#/dashboard';
-    return;
-  }
-
-  // Protect dashboard route, redirect to login if not logged in
-  if (path === '#/dashboard' && !currentUser) {
-    location.hash = '#/login';
-    return;
-  }
-
-  const app = document.getElementById('app');
-  app.innerHTML = '';
-
-  // Render the view corresponding to the route or 404 if none matches
-  const render = routes[path] || showNotFound;
-  render(app);
-
-  actualizarHeader(path);
-}
 
 // Function to load the correct view based on URL hash
 function router() {

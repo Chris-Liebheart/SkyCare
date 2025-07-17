@@ -1,10 +1,9 @@
-import { registerUser } from "../js/auth";
+import { registerUser } from '../js/auth.js'; // Import register function
 
-export function showRegister(container) {
+export function showRegister() {
+  const app = document.getElementById('app'); // Select container
 
-  const app = document.getElementById('app');
-  
-  // Render the registration form
+  // Set HTML form
   app.innerHTML = `
     <section class="register">
       <h2>Registro de Usuario</h2>
