@@ -1,9 +1,9 @@
-import { registerUser } from '../js/auth.js'; // Import register function
+import { registerUser } from '../js/auth.js'; // Importa función de registro
 
 export function showRegister() {
-  const app = document.getElementById('app'); // Select container
+  const app = document.getElementById('app'); // Contenedor principal
 
-  // Set HTML form
+  // Formulario de registro en HTML
   app.innerHTML = `
     <section class="register">
       <h2>Registro de Usuario</h2>
@@ -17,27 +17,38 @@ export function showRegister() {
         <input type="password" id="password" placeholder="Contraseña" required />
         <button type="submit">Registrarse</button>
       </form>
+      <p>¿Ya tienes una cuenta? <a href="#/login">Inicia sesión</a></p>
     </section>
   `;
 
   const form = document.getElementById('register-form');
 
   form.addEventListener('submit', async (e) => {
-    e.preventDefault(); // Stop reload
+    e.preventDefault(); // Evita recarga de la página
 
+    // Obtiene los valores de los campos y los limpia
     const name = document.getElementById('name').value.trim();
-    const identify = document.getElementById('identify').value.trim;
-    const phone = document.getElementById('phone').value.trim;
-    const address = document.getElementById('address').value.trim;
-    const city = document.getElementById('city').value.trim;
+    const identify = document.getElementById('identify').value.trim();
+    const phone = document.getElementById('reg-phone').value.trim();
+    const address = document.getElementById('address').value.trim();
+    const city = document.getElementById('city').value.trim();
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value;
-    
 
-    const newUser = { name, identify, phone, address, city, email, password, role: "user" };
+    // Crea el objeto del nuevo usuario
+    const newUser = {
+      name,
+      identify,
+      phone,
+      address,
+      city,
+      email,
+      password,
+      role: "user"
+    };
 
     try {
-      await registerUser(newUser); // Try register
+      await registerUser(newUser); // Llama a la función que registra el usuario en la API
       alert("Registro exitoso. Inicia sesión.");
       window.location.hash = '#/login';
     } catch (error) {
@@ -45,5 +56,4 @@ export function showRegister() {
       console.error(error);
     }
   });
-
 }

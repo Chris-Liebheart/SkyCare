@@ -1,4 +1,4 @@
-import { loginUser } from '../js/auth.js';
+import { loginUser } from '../js/auth';
 
 export function showLogin() {
   const app = document.getElementById('app'); // Get main app container

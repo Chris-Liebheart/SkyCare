@@ -1,4 +1,15 @@
 {
-    "users":[]
-
+  "users": [
+    {
+      "id": "b38c",
+      "name": "Dylan",
+      "identify": "1044618270",
+      "phone": "3007212879",
+      "address": "Calle",
+      "city": "Barranquilla",
+      "email": "marindylan@gmail.com",
+      "password": "12345",
+      "role": "user"
+    }
+  ]
 }

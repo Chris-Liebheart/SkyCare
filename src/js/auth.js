@@ -2,38 +2,57 @@ const API_URL = "http://localhost:3000/users";
 
 // ESTA PARTE ES DEL REGISTER.JS , It is the register.js file
 
-// Register new user (default role: "user")
+// ✅ FUNCIÓN DE REGISTRO
 export async function registerUser(newUser) {
-if (!newUser.name || !newUser.identify || !newUser.phone || !newUser.address || !newUser.city || !newUser.email || !newUser.password) {
-throw new Error("All fields are required.");
+    if (
+        !newUser.name || !newUser.identify || !newUser.phone ||
+        !newUser.address || !newUser.city || !newUser.email || !newUser.password
+    ) {
+        throw new Error("All fields are required.");
+    }
+
+    // Verifica si ya existe el correo
+    const existingUser = await fetch(`${API_URL}?email=${newUser.email}`);
+    const users = await existingUser.json();
+    if (users.length > 0) {
+        throw new Error("Email is already registered.");
+    }
+
+    const userToSave = {
+        name: newUser.name,
+        identify: newUser.identify,
+        phone: newUser.phone,
+        address: newUser.address,
+        city: newUser.city,
+        email: newUser.email,
+        password: newUser.password,
+        role: "user"
+    };
+
+    const response = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userToSave),
+    });
+
+    if (!response.ok) throw new Error("Error registering user.");
+    return await response.json();
 }
 
-// Check if email is already in use
-const existingUser = await fetch(`${API_URL}?email=${newUser.email}`);
-const users = await existingUser.json();
-if (users.length > 0) {
-throw new Error("Email is already registered.");
-}
+export async function loginUser(email, password) {
+    const response = await fetch(`${API_URL}?email=${email}&password=${password}`);
+    const users = await response.json();
 
-const userToSave = {
-name: newUser.name,
-identify: newUser.identify,
-phone: newUser.phone,
-address: newUser.address,
-city: newUser.city,
-email: newUser.email,
-password: newUser.password,
-role: "user"
-};
+    if (users.length === 0) {
+        throw new Error("Credenciales inválidas");
+    }
 
-const response = await fetch(API_URL, {
-method: "POST",
-headers: { "Content-Type": "application/json" },
-body: JSON.stringify(userToSave),
-});
+    const user = users[0];
 
-if (!response.ok) throw new Error("Error registering user.");
-return await response.json();
+    // ✅ Guardar en localStorage
+    localStorage.setItem("user", JSON.stringify(user));
+
+    return user;
 }
 
 
