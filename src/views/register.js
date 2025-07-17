@@ -32,6 +32,7 @@ export function showRegister() {
     const city = document.getElementById('city').value.trim;
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value;
+    
 
     const newUser = { name, identify, phone, address, city, email, password, role: "user" };
 
@@ -44,4 +45,5 @@ export function showRegister() {
       console.error(error);
     }
   });
+
 }
