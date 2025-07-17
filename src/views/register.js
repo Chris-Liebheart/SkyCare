@@ -1,8 +1,11 @@
 import { registerUser } from "../js/auth";
 
 export function showRegister(container) {
+
+  const app = document.getElementById('app');
+  
   // Render the registration form
-  container.innerHTML = `
+  app.innerHTML = `
     <section class="register">
       <h2>Registro de Usuario</h2>
       <form id="register-form">
