@@ -1,3 +1,5 @@
+import { registerUser } from "../js/auth";
+
 export function showRegister(container) {
   // Render the registration form
   container.innerHTML = `
