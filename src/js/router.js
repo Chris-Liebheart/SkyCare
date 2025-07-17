@@ -1,10 +1,13 @@
 // Importa todas las vistas necesarias
+import { showLanding } from '../views/landing.js'; 
 import { showRegister } from '../views/register.js';
 import { showLogin } from '../views/login.js';
 import { showNotFound } from '../views/404.js'; // Asegúrate de tener este archivo
 
 // Definimos las rutas disponibles
 const routes = {
+  '': showLanding,
+  '/': showLanding,
   '#/register': showRegister,
   '#/login': showLogin,
   '#/not-found': showNotFound

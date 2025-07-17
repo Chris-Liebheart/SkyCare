@@ -50,7 +50,7 @@ export function showRegister() {
     try {
       await registerUser(newUser); // Llama a la función que registra el usuario en la API
       alert("Registro exitoso. Inicia sesión.");
-      window.location.hash = '#/login';
+      window.location.hash = '#/dashboard';
     } catch (error) {
       alert(error.message || "Error al registrarse.");
       console.error(error);
