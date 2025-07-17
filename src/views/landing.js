@@ -1,4 +1,4 @@
-// Show the landing page
+// Show the landing page, landing view.
 export function showLanding() {
   container.innerHTML = `
     <section class="landing-content">
