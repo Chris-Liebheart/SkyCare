@@ -2,8 +2,8 @@
 export function showLanding() {
   container.innerHTML = `
     <section class="landing-content">
-      <h2>Bienvenido a PetCare Center</h2>
-      <p>Confía el cuidado de tus mascotas a nuestro equipo especializado.</p>
+      <h2>Bienvenido a SkyCare</h2>
+      <p>El clima importa. Tú también.</p>
       <div class="landing-buttons">
         <!-- Go to login page -->
         <button onclick="location.hash = '#/login'">Iniciar sesión</button>

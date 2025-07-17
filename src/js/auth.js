@@ -2,7 +2,6 @@ const API_URL = "http://localhost:3000/users";
 
 // ESTA PARTE ES DEL REGISTER.JS , It is the register.js file
 
-// ✅ FUNCIÓN DE REGISTRO
 export async function registerUser(newUser) {
     if (
         !newUser.name || !newUser.identify || !newUser.phone ||
@@ -53,6 +52,27 @@ export async function loginUser(email, password) {
     localStorage.setItem("user", JSON.stringify(user));
 
     return user;
+}
+
+// Remove user session
+export function logoutUser() {
+localStorage.removeItem("currentUser");
+}
+
+// Get current logged-in user
+export function getCurrentUser() {
+return JSON.parse(localStorage.getItem("currentUser"));
+}
+
+// Check if user is logged in
+export function isAuthenticated() {
+return !!localStorage.getItem("currentUser");
+}
+
+// Check if current user is admin
+export function isAdmin() {
+const user = getCurrentUser();
+return user && user.role === "admin";
 }
 
 
