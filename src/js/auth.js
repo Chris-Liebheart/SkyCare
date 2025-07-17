@@ -38,6 +38,11 @@ export async function registerUser(newUser) {
     return await response.json();
 }
 
+
+
+
+// ESTA PARTE ES DEL LOGIN.JS , It is the login.js file
+
 export async function loginUser(email, password) {
     const response = await fetch(`${API_URL}?email=${email}&password=${password}`);
     const users = await response.json();
@@ -48,7 +53,7 @@ export async function loginUser(email, password) {
 
     const user = users[0];
 
-    // ✅ Guardar en localStorage
+    // Guardar en localStorage
     localStorage.setItem("user", JSON.stringify(user));
 
     return user;
@@ -74,6 +79,3 @@ export function isAdmin() {
 const user = getCurrentUser();
 return user && user.role === "admin";
 }
-
-
-// ESTA PARTE ES DEL LOGIN.JS , It is the 
