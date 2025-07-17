@@ -3,13 +3,14 @@ import { showLanding } from '../views/landing.js';
 import { showRegister } from '../views/register.js';
 import { showLogin } from '../views/login.js';
 import { showNotFound } from '../views/404.js'; // Asegúrate de tener este archivo
-
+import { showDashboardCustomer } from '../views/dashboardCustomer.js'; // dashboard de cliente
 // Definimos las rutas disponibles
 const routes = {
   '#/': showLanding,
   '#/register': showRegister,
   '#/login': showLogin,
-  '#/not-found': showNotFound
+  '#/not-found': showNotFound,
+  '#/dashboard': showDashboardCustomer,  
 };
 
 
