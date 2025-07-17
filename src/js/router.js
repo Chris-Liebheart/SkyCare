@@ -6,22 +6,23 @@ import { showNotFound } from '../views/404.js'; // Asegúrate de tener este arch
 
 // Definimos las rutas disponibles
 const routes = {
-  '': showLanding,
-  '/': showLanding,
+  '#/': showLanding,
   '#/register': showRegister,
   '#/login': showLogin,
   '#/not-found': showNotFound
 };
+
 
 // Función para gestionar las rutas basadas en el hash
 function router() {
   let hash = window.location.hash;
 
   // Si no hay hash en la URL, redirige por defecto al login
-  if (!hash) {
-    window.location.hash = '#/login';
-    return; // Evita ejecución prematura
+  if (!hash || hash === '#') {
+  window.location.hash = '#/';
+  return;
   }
+
 
   const baseRoute = hash.split('?')[0]; // Remueve parámetros (si los hay)
 
