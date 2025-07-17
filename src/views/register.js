@@ -15,6 +15,8 @@ export function showRegister() {
         <input type="text" id="city" placeholder="Ciudad" required />
         <input type="email" id="email" placeholder="Correo electrónico" required />
         <input type="password" id="password" placeholder="Contraseña" required />
+        <label for="personalcare">¿Hay algo que debamos tener en cuenta sobre tu salud o tu piel?</label>
+        <input type="text" id="personalcare" placeholder="Ej: Tengo piel sensible, alergia al frío..." required />
         <button type="submit">Registrarse</button>
       </form>
       <p>¿Ya tienes una cuenta? <a href="#/login">Inicia sesión</a></p>
@@ -34,6 +36,7 @@ export function showRegister() {
     const city = document.getElementById('city').value.trim();
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value;
+    const personalcare = document.getElementById('personalcare').value.trim();
 
     // Crea el objeto del nuevo usuario
     const newUser = {
@@ -44,6 +47,7 @@ export function showRegister() {
       city,
       email,
       password,
+      personalcare,
       role: "user"
     };
 

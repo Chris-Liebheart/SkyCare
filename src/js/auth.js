@@ -5,7 +5,7 @@ const API_URL = "http://localhost:3000/users";
 export async function registerUser(newUser) {
     if (
         !newUser.name || !newUser.identify || !newUser.phone ||
-        !newUser.address || !newUser.city || !newUser.email || !newUser.password
+        !newUser.address || !newUser.city || !newUser.email || !newUser.personalcare || !newUser.password
     ) {
         throw new Error("All fields are required.");
     }
@@ -25,6 +25,7 @@ export async function registerUser(newUser) {
         city: newUser.city,
         email: newUser.email,
         password: newUser.password,
+        personalcare: newUser.personalcare,
         role: "user"
     };
 
