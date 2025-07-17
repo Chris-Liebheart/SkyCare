@@ -22,10 +22,14 @@ export function showRegister(container) {
     e.preventDefault(); // Stop reload
 
     const name = document.getElementById('name').value.trim();
+    const identify = document.getElementById('identify').value.trim;
+    const phone = document.getElementById('phone').value.trim;
+    const address = document.getElementById('address').value.trim;
+    const city = document.getElementById('city').value.trim;
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value;
 
-    const newUser = { name, email, password, role: "user" };
+    const newUser = { name, identify, phone, address, city, email, password, role: "user" };
 
     try {
       await registerUser(newUser); // Try register
