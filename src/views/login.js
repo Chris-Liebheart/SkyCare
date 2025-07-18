@@ -20,7 +20,6 @@ export function showLogin() {
 
   const form = document.getElementById('login-form');
 
-  // Handle form submit
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -28,10 +27,12 @@ export function showLogin() {
     const password = document.getElementById('password').value;
 
     try {
-      await loginUser(email, password); // Try to log in
-      window.location.hash = '#/dashboard'; // Redirect on success
+      const userData = await loginUser(email, password); // Asume que esto devuelve el rol
+      localStorage.setItem("role", userData.role); // Guardamos el rol en localStorage
+
+      window.location.hash = '#/dashboard'; // Redirigimos después del login
     } catch (error) {
-      alert("Email o contraseña incorrectos."); // Show error message
+      alert("Email o contraseña incorrectos.");
       console.error(error);
     }
   });

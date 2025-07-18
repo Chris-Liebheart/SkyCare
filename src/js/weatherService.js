@@ -2,27 +2,40 @@ import { apiKey } from './config.js';
 
 const API_BASE_URL = 'https://api.openweathermap.org/data/2.5';
 
-export async function getWeatherInfo(city) {
-  if (!city) return null;
-  
+export async function getWeatherInfo(input) {
+  if (!input) return null;
+
+  let url = '';
+
+  // Si es string, se asume que es el nombre de una ciudad
+  if (typeof input === 'string') {
+    url = `${API_BASE_URL}/weather?q=${input}&appid=${apiKey}&units=metric&lang=es`;
+  }
+
+  // Si es un objeto con lat y lon, se usa geolocalización
+  else if (typeof input === 'object' && input.lat && input.lon) {
+    const { lat, lon } = input;
+    url = `${API_BASE_URL}/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=es`;
+  }
+
   try {
-    const url = `${API_BASE_URL}/weather?q=${city}&appid=${apiKey}&units=metric&lang=es`;
     const response = await fetch(url);
-    
     if (!response.ok) return null;
-    
+
     const data = await response.json();
-    
+
     return {
       temperatura: Math.round(data.main.temp),
       sensacionTermica: Math.round(data.main.feels_like || data.main.temp),
       pronostico: data.weather[0].description,
       humedad: data.main.humidity,
       viento: Math.round(data.wind.speed * 10) / 10,
-      uv: 0 // sin resultado por ahora
+      nombreCiudad: data.name, // 🔧 Agregado para mostrar el nombre de la ciudad
+      uv: 0 // placeholder: puedes conectar otra API aquí si deseas índice UV real
     };
-    
+
   } catch (error) {
+    console.error("Error al obtener clima:", error);
     return null;
   }
 }
